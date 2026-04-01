@@ -142,7 +142,7 @@ int to_int(const string& s) {
     }
 }
 int main() {
-    std::ifstream arquivo("C:\\Users\\Joseph\\Downloads\\Atividade Banco de Dados\\dis-csv-discentes-de-graduacao-de-2025_1.csv");
+    std::ifstream arquivo("C:/Users/Joseph/Downloads/BancoDeDados/dis-csv-discentes-de-graduacao-de-2025_1.csv");
     vector<Discente> discentes;
 
     if (!arquivo.is_open()) {
@@ -152,13 +152,12 @@ int main() {
 
     string linha;
 
-    // Pular cabeçalho
+
     getline(arquivo, linha);
 
     while (getline(arquivo, linha)) {
         auto campos = parseCSV(linha);
 
-        // Proteção contra linhas incompletas
         if (campos.size() < 11) continue;
 
         Discente d;
