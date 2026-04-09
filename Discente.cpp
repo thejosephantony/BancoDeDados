@@ -3,6 +3,7 @@
 #include <sstream>
 #include <vector>
 #include <string>
+#include <locale>
 
 
 using std::cout;
@@ -142,6 +143,7 @@ int to_int(const string& s) {
     }
 }
 int main() {
+    setlocale(LC_ALL, "Portuguese");
     std::ifstream arquivo("C:/Users/Joseph/Downloads/BancoDeDados/dis-csv-discentes-de-graduacao-de-2025_1.csv");
     vector<Discente> discentes;
 
@@ -187,6 +189,8 @@ int main() {
         cout << discentes[i].get_nome()
              << " - "
              << discentes[i].get_matricula()
+             << " - "
+             << discentes[i].get_ano_ingresso()
              << endl;
     }
 
