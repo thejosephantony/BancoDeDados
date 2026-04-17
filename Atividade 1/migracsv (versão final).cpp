@@ -3,7 +3,7 @@
 #include <sstream>
 #include <string>
 #include <locale.h>
-#include <vector>   
+#include <vector>
 
 using namespace std;
 
@@ -14,8 +14,8 @@ class Discente{
     private:
     	string matricula;
 	    string nome_discente;
-	    int ano_ingresso;
-	    int periodo_ingresso;
+	    string ano_ingresso;
+	    string periodo_ingresso;
 	    string tipo_discente;
 	    string status_discente;
 	    string nivel_ensino;
@@ -23,7 +23,7 @@ class Discente{
 	    string modalidade_educacao;
 	    string nome_unidade;
 	    string nome_unidade_gestora;
-    
+
     public:
         string get_matricula(){
             return this->matricula;
@@ -41,20 +41,20 @@ class Discente{
             this->nome_discente = nome_discente;
         }
 
-        int get_ano_ingresso() const{
+        string get_ano_ingresso() const{
             return this->ano_ingresso;
         }
 
-        void set_ano_ingresso(const int ano_ingresso){
+        void set_ano_ingresso(const string& ano_ingresso){
             this->ano_ingresso = ano_ingresso;
         }
 
-        int get_periodo_ingresso() const{
+        string get_periodo_ingresso() const{
             return this->periodo_ingresso;
         }
 
-        
-        void set_periodo_ingresso(const int periodo_ingresso){
+
+        void set_periodo_ingresso(const string & periodo_ingresso){
             this->periodo_ingresso = periodo_ingresso;
         }
 
@@ -93,7 +93,7 @@ class Discente{
         string get_modalidade_educacao() const{
             return this->modalidade_educacao;
         }
-        
+
         void set_modalidade_educacao(const string& modalidade_educacao){
             this->modalidade_educacao = modalidade_educacao;
         }
@@ -124,9 +124,9 @@ int tamanhoCSV = 0;
 char linha[300]; // Buffer para armazenar cada linha
 
 void percorreCSV() {
-    //ifstream arquivo("dis-csv-discentes-de-graduacao-de-2025_1.csv");
+    ifstream arquivo("C:/Users/Joseph/Downloads/BancoDeDados/Atividade 1/dis-csv-discentes-de-graduacao-de-2025_1.csv");
 
-    ifstream arquivo("discentes.csv");
+    // ifstream arquivo("discentes.csv");
 
     if (!arquivo.is_open()) {
         cout << "Erro ao abrir o arquivo.\n";
@@ -170,8 +170,8 @@ void percorreCSV() {
 
         aluno.set_matricula(matricula);
         aluno.set_nome(nome_discente);
-        aluno.set_ano_ingresso(stoi(ano_ingresso));
-        aluno.set_periodo_ingresso(stoi(periodo_ingresso));
+        aluno.set_ano_ingresso(ano_ingresso);
+        aluno.set_periodo_ingresso(periodo_ingresso);
         aluno.set_tipo_discente(tipo_discente);
         aluno.set_status_discente(status_discente);
         aluno.set_nivel_ensino(nivel_ensino);
@@ -188,7 +188,7 @@ void percorreCSV() {
 
     arquivo.close();
     cout << "Total de discentes carregados: " << i << endl;
-    
+
 }
 
 /* Fazer uma função para a impressão de um discente. Fiquem livres para
@@ -197,7 +197,7 @@ apresentados. É necessário apresentar o nome de cada campo e valor
 referente ao discente */
 
 void mostrarAluno(int indice){
-	
+
 	cout << "\nDados do Estudante:\n\n";
     cout << "Matricula: " << discentes[indice].get_matricula() << endl;
     cout << "Nome: " << discentes[indice].get_nome() << endl;
@@ -239,7 +239,7 @@ void salvarTXT(int total) { // salva em arquivo .txt
         arquivo << "Unidade: " << discentes[i].get_nome_unidade() << "\n";
         arquivo << "Unidade Gestora: " << discentes[i].get_nome_unidade_gestora() << "\n";
         arquivo << "----------------------------------------\n";
-        
+
     }
 
     arquivo.close();
@@ -265,15 +265,15 @@ void menu(){    // Função de impressão do menu
     printf("1 - Imprimir Discente\n");
     printf("2 - Salvar Dados\n");
     printf("0 - Encerrar Programa\n");
-	
+
 }
 
 int main() {    // Função principal para executar os métodos da aplicação
-	
+
 	setlocale(LC_ALL, "pt_BR.UTF-8");
     int op,value;
     percorreCSV();
-	
+
     do {
         menu();  // Exibe as opções disponíveis
 
@@ -281,12 +281,12 @@ int main() {    // Função principal para executar os métodos da aplicação
 
         // Processa a opção escolhida
         switch (op) {
-            // Imprimir Discente 
+            // Imprimir Discente
             case 1:
                 limparTela();
-                printf("Digite o índice que corresponde ao discente: "); 
+                printf("Digite o índice que corresponde ao discente: ");
                 scanf("%d",&value);
-                mostrarAluno(value-1); // Ajustar o indice do array 
+                mostrarAluno(value-1); // Ajustar o indice do array
                 break;
             //  Salvar dados
             case 2:
